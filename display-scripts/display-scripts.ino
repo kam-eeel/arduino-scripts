@@ -5,6 +5,8 @@
   https://www.tutorialspoint.com/arduino/arduino_ultrasonic_sensor
   http://www.arduino.cc/en/Tutorial/LiquidCrystalSerial
   https://learn.adafruit.com/tmp36-temperature-sensor/using-a-temp-sensor
+  https://learn.adafruit.com/dht/using-a-dhtxx-sensor
+  https://learn.adafruit.com/dht
   Follow circuit diagram provided in links above
 */
 
@@ -19,7 +21,7 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2); // digital pins
 const int pingPin = 7; // trig pin - digital
 const int echoPin = 6; // echo pin - digital
 
-const int tempPin = 0; // temperature sensor ! must be analog A0
+const int tempPin = 9; // temperature sensor ! must be analog A0
 
 const int fanPin = 8; // digital
 
@@ -60,9 +62,7 @@ void proximity(){
 
 float temperature(){
   float temp = dht.readTemperature();
-  delay(2000);
   float h = dht.readHumidity();
-  delay(2000);
   float hic = dht.computeHeatIndex(temp, h, false);
   display(temp, 2);
   return temp;
