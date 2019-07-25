@@ -7,6 +7,7 @@
   https://learn.adafruit.com/tmp36-temperature-sensor/using-a-temp-sensor
   https://learn.adafruit.com/dht/using-a-dhtxx-sensor
   https://learn.adafruit.com/dht
+  http://www.circuitbasics.com/how-to-set-up-the-dht11-humidity-sensor-on-an-arduino/
   Follow circuit diagram provided in links above
 */
 
@@ -21,9 +22,9 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2); // digital pins
 const int pingPin = 7; // trig pin - digital
 const int echoPin = 6; // echo pin - digital
 
-const int tempPin = 9; // temperature sensor ! must be analog A0
+const int tempPin = 8; // temperature sensor ! must be analog A0
 
-const int fanPin = 8; // digital
+const int fanPin = 9; // digital
 
 void proximity();
 float temperature();
@@ -42,9 +43,10 @@ void setup(){
 }
 
 void loop() {
-  // proximity();
-  temperature();
+  proximity();
+  // temperature();
   // fanControlTemp();
+  // digitalWrite(fanPin, HIGH);
 }
 
 void proximity(){
@@ -66,12 +68,12 @@ float temperature(){
   float hic = dht.computeHeatIndex(temp, h, false);
   display(temp, 2);
   return temp;
-//  int read = analogRead(tempPin);
-//  float voltage = read * 5.0;
-//  voltage /= 1024.0;
-//  float temp = (voltage - 0.5) * 100.0;
-//  display(temp, 2);
-//  return temp;
+  // int read = analogRead(tempPin);
+  // float voltage = read * 5.0;
+  // voltage /= 1024.0;
+  // float temp = (voltage - 0.5) * 100.0;
+  // display(temp, 2);
+  // return temp;
 }
 
 void display(float value, int b){
