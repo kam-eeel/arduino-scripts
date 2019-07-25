@@ -9,10 +9,10 @@
 */
 
 #include <LiquidCrystal.h>
-// #include "DHT.h"
+#include "DHT.h"
 
 //#define aref_voltage 3.3
-// #define DHTTYPE DHT11
+#define DHTTYPE DHT11
 
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2); // digital pins
 
@@ -36,7 +36,7 @@ void setup(){
   pinMode(tempPin, INPUT);
   lcd.begin(16, 2); 
   Serial.begin(9600);
-  // dht.begin();
+  dht.begin();
 }
 
 void loop() {
@@ -59,19 +59,19 @@ void proximity(){
 }
 
 float temperature(){
-  // float temp = dht.readTemperature();
-  // delay(2000);
-  // float h = dht.readHumidity();
-  // delay(2000);
-  // float hic = dht.computeHeatIndex(temp, h, false);
-  // display(temp, 2);
-  // return temp;
- int read = analogRead(tempPin);
- float voltage = read * 5.0;
- voltage /= 1024.0;
- float temp = (voltage - 0.5) * 100.0;
- display(temp, 2);
- return temp;
+  float temp = dht.readTemperature();
+  delay(2000);
+  float h = dht.readHumidity();
+  delay(2000);
+  float hic = dht.computeHeatIndex(temp, h, false);
+  display(temp, 2);
+  return temp;
+//  int read = analogRead(tempPin);
+//  float voltage = read * 5.0;
+//  voltage /= 1024.0;
+//  float temp = (voltage - 0.5) * 100.0;
+//  display(temp, 2);
+//  return temp;
 }
 
 void display(float value, int b){
